@@ -11,6 +11,9 @@ jobs:
       region: us_east-1
       account: 1234567789012
 
+      username: ${{ secrets.USERNAME  }}
+      password: ${{ secrets.PASSWORD }}
+
     runs-on: ubuntu-latest
 
     steps:
@@ -18,11 +21,17 @@ jobs:
         run: echo "Hola mundo"
 
       - name: "Mostrando variables de entorno"
-        if: ${{ env.platform == 'azure' }}
+
         run: |
           echo "Esto es el valor de platform: ${{env.platform}}"
           echo "Esto es una región: ${{ env.region }}"
           echo "Esto es una cuenta: ${{ env.account }}"
+
+      - name: "Mostrando valores solo si el usuario es correcto"
+        if: ${{ env.username != '' && env.password != '' }}
+        run: |
+          echo 'Sí existe usuario y contraseña'
+
       - name: "Mostrando variables por defecto"
         run: |
           echo "Evento: ${{ toJson(github.event) }}"
