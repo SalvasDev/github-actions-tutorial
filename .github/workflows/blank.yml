@@ -27,6 +27,8 @@ jobs:
           echo "Esto es una región: ${{ env.region }}"
           echo "Esto es una cuenta: ${{ env.account }}"
 
+          echo "Versión del proyecto ${{vars.PROJECT_VERSION}}"
+
       - name: "Mostrando valores solo si el usuario es correcto"
         if: ${{ env.username != '' && env.password != '' }}
         run: |
