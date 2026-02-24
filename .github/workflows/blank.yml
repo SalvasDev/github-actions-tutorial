@@ -23,3 +23,6 @@ jobs:
           echo "Esto es el valor de platform: ${{env.platform}}"
           echo "Esto es una región: ${{ env.region }}"
           echo "Esto es una cuenta: ${{ env.account }}"
+      - name: "Mostrando variables por defecto"
+        run: |
+          echo "Evento: ${{ toJson(github.event) }}"
